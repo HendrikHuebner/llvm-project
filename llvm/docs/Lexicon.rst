@@ -12,6 +12,9 @@ Definitions
 A
 -
 
+**AA**
+    Alias Analysis
+
 **ADCE**
     Aggressive Dead Code Elimination
 
@@ -52,6 +55,8 @@ B
 
 C
 -
+**CFG**
+    Control Flow Graph
 
 **CFI**
     This abbreviation has two meanings.
@@ -98,6 +103,9 @@ D
 
 **DSE**
     Dead Store Elimination
+
+**DSO**
+    Dynamic Shared Object
 
 E
 -
@@ -218,6 +226,9 @@ N
   is a pure refactoring/cleanup.
   Usually used in the first line, so it is visible without opening the
   actual commit email.
+
+**NYI**
+    Not Yet Implemented
 
 O
 -
