@@ -4,6 +4,17 @@ void may_throw(void) {
         @throw (id) 1;
 }
 
+void rethrow(void) {
+        @try {
+                may_throw();
+        }
+        @catch(...) {
+                // CHECK: invoke void @__cxa_rethrow()
+                // CHECK: declare void @__cxa_rethrow()
+                @throw;
+        }
+}
+
 int main(void) {
         int retval = 0;
         @try {
@@ -33,5 +44,3 @@ int main(void) {
         }
         return retval;
 }
-
-
