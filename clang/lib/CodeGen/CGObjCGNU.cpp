@@ -2977,6 +2977,17 @@ CGObjCGNU::GenerateMessageSend(CodeGenFunction &CGF,
                                   Class, Receiver))
       return false;
 
+    // WebAssembly indirect calls require an exact function type match.  The
+    // runtime's generic nil-message IMP cannot have every possible Objective-C
+    // method type, so never call it for a potentially-null receiver.
+    if (CGM.getTriple().isWasm() && !isDirect) {
+      if (Method && Method->hasParamDestroyedInCallee())
+        hasParamDestroyedInCallee = true;
+      requiresExplicitZeroResult =
+          !Return.isUnused() && !ResultType->isVoidType();
+      return true;
+    }
+
     // If there's a consumed argument, we need a nil check.
     if (Method && Method->hasParamDestroyedInCallee()) {
       hasParamDestroyedInCallee = true;
