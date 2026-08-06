@@ -179,7 +179,7 @@ protected:
       (R.getVersion() >= VersionTuple(major, minor));
   }
 
-  const std::string ManglePublicSymbol(StringRef Name) {
+  std::string ManglePublicSymbol(StringRef Name) {
     StringRef prefix = "._";
 
     // Exported symbols in Emscripten must be a valid Javascript identifier.
